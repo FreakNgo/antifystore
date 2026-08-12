@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antify Shop | Custom Made</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FBFBF9;
+    --ink: #131311;
+    --muted: #757369;
+    --line: #E4E2DA;
+    --brass: #9C8058;
+    --radius: 0px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  ::selection { background: var(--brass); color: #fff; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding-inline: 32px; }
+  @media (max-width: 640px) { .wrap { padding-inline: 20px; } }
+
+  /* ---------- HEADER ---------- */
+  header { padding-top: 56px; }
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 28px;
+  }
+  .meta-row .dot { color: var(--brass); }
+
+  .hero { padding-block: 8px 72px; border-bottom: 1px solid var(--line); }
+  .wordmark {
+    font-weight: 800;
+    font-size: clamp(3.2rem, 10vw, 7.2rem);
+    letter-spacing: -0.045em;
+    line-height: 0.92;
+  }
+  .wordmark .thin { font-weight: 200; color: var(--brass); }
+  .hero-sub {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .hero-copy {
+    max-width: 440px;
+    color: var(--muted);
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  .hero-index {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-align: right;
+    white-space: nowrap;
+  }
+  .hero-index strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- CATALOG ---------- */
+  .catalog { padding-block: 64px 40px; }
+  .catalog-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 48px;
+  }
+  .catalog-head h2 {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .catalog-head span {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding-block: 40px;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .card:last-child { border-bottom: 1px solid var(--line); }
+  @media (max-width: 720px) {
+    .card { grid-template-columns: 1fr; gap: 20px; }
+  }
+
+  .img-frame {
+    aspect-ratio: 1/1;
+    background: #F4F3EF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .img-frame img {
+    max-width: 78%;
+    max-height: 78%;
+    object-fit: contain;
+    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+    filter: grayscale(4%);
+  }
+  .card:hover .img-frame img { transform: scale(1.05); }
+
+  .info { display: flex; flex-direction: column; gap: 10px; }
+  .info-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .index-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+  .tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--brass);
+    margin-bottom: 2px;
+  }
+  .title { font-size: 1.4rem; font-weight: 600; letter-spacing: -0.01em; }
+  .desc { color: var(--muted); font-size: 0.94rem; max-width: 46ch; }
+
+  .specs {
+    display: flex;
+    gap: 20px;
+    margin-top: 4px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .specs span { border-left: 1px solid var(--line); padding-left: 10px; }
+  .specs span:first-child { border-left: none; padding-left: 0; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    color: var(--ink);
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--ink);
+    width: fit-content;
+    transition: color 0.2s ease, border-color 0.2s ease, gap 0.2s ease;
+  }
+  .btn .arrow { transition: transform 0.2s ease; }
+  .btn:hover { color: var(--brass); border-color: var(--brass); }
+  .btn:hover .arrow { transform: translateX(4px); }
+  .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 4px; }
+
+  /* ---------- FOOTER ---------- */
+  footer { margin-top: 96px; border-top: 1px solid var(--line); padding-block: 40px 32px; }
+  .footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 28px;
+  }
+  .footer-brand {
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+  }
+  .footer-contact {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .footer-contact a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .footer-contact a:hover { color: var(--brass); border-color: var(--brass); }
+  .disclosure {
+    font-size: 0.72rem;
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+  .footer-bottom {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .img-frame img, .btn, .btn .arrow { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+    <header>
+      <div class="meta-row">
+        <span>Antify Shop <span class="dot">·</span> Custom Print Co.</span>
+        <span>Est. 2026</span>
+      </div>
+
+      <div class="hero">
+        <div class="wordmark">ANTIFY<span class="thin">.</span></div>
+        <div class="hero-sub">
+          <p class="hero-copy">Considered blanks, printed to order. Two objects, made properly — your design, our press.</p>
+          <div class="hero-index">No minimums<br><strong>Ships worldwide</strong></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="catalog">
+      <div class="catalog-head">
+        <h2>The Collection</h2>
+        <span>02 / 02</span>
+      </div>
+
+      <div class="grid">
+
+        <!-- PRODUCT 1: T-SHIRT -->
+        <div class="card">
+          <div class="img-frame">
+            <img src="https://en.pimg.jp/101/455/308/1/101455308.jpg" alt="Premium Custom T-Shirt">
+          </div>
+          <div class="info">
+            <div class="info-top">
+              <div>
+                <div class="tag">Apparel</div>
+                <div class="title">Custom T-Shirt</div>
+              </div>
+              <div class="index-num">01</div>
+            </div>
+            <p class="desc">Ultra-soft heavyweight cotton, cut clean and printed sharp — built to carry your design without getting in its way.</p>
+            <div class="specs">
+              <span>100% Cotton</span>
+              <span>Heavy Knit</span>
+              <span>Unisex Fit</span>
+            </div>
+            <!-- REPLACE HREF WITH YOUR AMAZON AFFILIATE LINK LATER -->
+            <a href="#" target="_blank" class="btn">Customize on Amazon <span class="arrow">→</span></a>
+          </div>
+        </div>
+
+        <!-- PRODUCT 2: COFFEE MUG -->
+        <div class="card">
+          <div class="img-frame">
+            <img src="https://static.vecteezy.com/system/resources/previews/015/339/415/non_2x/3d-render-two-white-coffee-mug-mockup-sublimation-design-or-logo-presentation-on-a-blank-ceramic-cup-without-drink-png.png" alt="Custom Ceramic Coffee Mug">
+          </div>
+          <div class="info">
+            <div class="info-top">
+              <div>
+                <div class="tag">Drinkware</div>
+                <div class="title">Ceramic Mug, 11oz</div>
+              </div>
+              <div class="index-num">02</div>
+            </div>
+            <p class="desc">Glossy ceramic with a crisp sublimation finish — holds detail and color long after the coffee's gone cold.</p>
+            <div class="specs">
+              <span>Ceramic</span>
+              <span>11oz</span>
+              <span>Dishwasher Safe</span>
+            </div>
+            <!-- REPLACE HREF WITH YOUR AMAZON AFFILIATE LINK LATER -->
+            <a href="#" target="_blank" class="btn">Customize on Amazon <span class="arrow">→</span></a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Antify Shop</div>
+          <p class="footer-contact" style="margin-top: 10px;">
+            Questions or custom orders —<br>
+            <a href="mailto:gmail-antify.web@gmail.com">gmail-antify.web@gmail.com</a>
+          </p>
+        </div>
+        <p class="disclosure">As an Amazon Associate, Antify Shop earns from qualifying purchases made through our product links, at no additional cost to you.</p>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Antify Shop</span>
+        <span>All prints final</span>
+      </div>
+    </footer>
+  </div>
+
+</body>
+</html>
