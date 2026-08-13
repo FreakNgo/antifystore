@@ -1,335 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Antify Shop | Custom Made</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg: #FBFBF9;
-    --ink: #131311;
-    --muted: #757369;
-    --line: #E4E2DA;
-    --brass: #9C8058;
-    --radius: 0px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: inherit; }
-  ::selection { background: var(--brass); color: #fff; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antify — Curated Essentials</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: #121212;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --accent: #ffffff;
+            --amazon-gold: #ff9900;
+        }
 
-  .wrap { max-width: 1180px; margin: 0 auto; padding-inline: 32px; }
-  @media (max-width: 640px) { .wrap { padding-inline: 20px; } }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
 
-  /* ---------- HEADER ---------- */
-  header { padding-top: 56px; }
-  .meta-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding-bottom: 28px;
-  }
-  .meta-row .dot { color: var(--brass); }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-  .hero { padding-block: 8px 72px; border-bottom: 1px solid var(--line); }
-  .wordmark {
-    font-weight: 800;
-    font-size: clamp(3.2rem, 10vw, 7.2rem);
-    letter-spacing: -0.045em;
-    line-height: 0.92;
-  }
-  .wordmark .thin { font-weight: 200; color: var(--brass); }
-  .hero-sub {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 32px;
-    margin-top: 28px;
-    flex-wrap: wrap;
-  }
-  .hero-copy {
-    max-width: 440px;
-    color: var(--muted);
-    font-size: 1rem;
-    font-weight: 400;
-  }
-  .hero-index {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.75rem;
-    color: var(--muted);
-    text-align: right;
-    white-space: nowrap;
-  }
-  .hero-index strong { color: var(--ink); font-weight: 600; }
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
 
-  /* ---------- CATALOG ---------- */
-  .catalog { padding-block: 64px 40px; }
-  .catalog-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 48px;
-  }
-  .catalog-head h2 {
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-  .catalog-head span {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.72rem;
-    color: var(--muted);
-  }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
 
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
+        header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
 
-  .card {
-    padding-block: 40px;
-    border-top: 1px solid var(--line);
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 32px;
-    align-items: center;
-  }
-  .card:last-child { border-bottom: 1px solid var(--line); }
-  @media (max-width: 720px) {
-    .card { grid-template-columns: 1fr; gap: 20px; }
-  }
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 4rem;
+        }
 
-  .img-frame {
-    aspect-ratio: 1/1;
-    background: #F4F3EF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  .img-frame img {
-    max-width: 78%;
-    max-height: 78%;
-    object-fit: contain;
-    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
-    filter: grayscale(4%);
-  }
-  .card:hover .img-frame img { transform: scale(1.05); }
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
 
-  .info { display: flex; flex-direction: column; gap: 10px; }
-  .info-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 16px;
-  }
-  .index-num {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.72rem;
-    color: var(--muted);
-  }
-  .tag {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--brass);
-    margin-bottom: 2px;
-  }
-  .title { font-size: 1.4rem; font-weight: 600; letter-spacing: -0.01em; }
-  .desc { color: var(--muted); font-size: 0.94rem; max-width: 46ch; }
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: #333333;
+        }
 
-  .specs {
-    display: flex;
-    gap: 20px;
-    margin-top: 4px;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.68rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  .specs span { border-left: 1px solid var(--line); padding-left: 10px; }
-  .specs span:first-child { border-left: none; padding-left: 0; }
+        .tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 12px;
-    font-size: 0.88rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    text-decoration: none;
-    color: var(--ink);
-    padding-bottom: 2px;
-    border-bottom: 1px solid var(--ink);
-    width: fit-content;
-    transition: color 0.2s ease, border-color 0.2s ease, gap 0.2s ease;
-  }
-  .btn .arrow { transition: transform 0.2s ease; }
-  .btn:hover { color: var(--brass); border-color: var(--brass); }
-  .btn:hover .arrow { transform: translateX(4px); }
-  .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 4px; }
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
 
-  /* ---------- FOOTER ---------- */
-  footer { margin-top: 96px; border-top: 1px solid var(--line); padding-block: 40px 32px; }
-  .footer-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 28px;
-  }
-  .footer-brand {
-    font-weight: 800;
-    font-size: 1.1rem;
-    letter-spacing: -0.02em;
-  }
-  .footer-contact {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-  .footer-contact a {
-    color: var(--ink);
-    text-decoration: none;
-    border-bottom: 1px solid var(--line);
-  }
-  .footer-contact a:hover { color: var(--brass); border-color: var(--brass); }
-  .disclosure {
-    font-size: 0.72rem;
-    color: var(--muted);
-    max-width: 480px;
-    line-height: 1.6;
-  }
-  .footer-bottom {
-    margin-top: 32px;
-    padding-top: 20px;
-    border-top: 1px solid var(--line);
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.68rem;
-    color: var(--muted);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+        .product-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
 
-  @media (prefers-reduced-motion: reduce) {
-    .img-frame img, .btn, .btn .arrow { transition: none; }
-  }
-</style>
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .btn-buy {
+            display: block;
+            width: 100%;
+            background-color: var(--accent);
+            color: var(--bg-color);
+            text-align: center;
+            padding: 0.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-buy:hover {
+            background-color: #e5e5e5;
+        }
+
+        footer {
+            text-align: center;
+            max-width: 700px;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 2rem;
+            margin-top: auto;
+        }
+
+        footer p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
 
-  <div class="wrap">
     <header>
-      <div class="meta-row">
-        <span>Antify Shop <span class="dot">·</span> Custom Print Co.</span>
-        <span>Est. 2026</span>
-      </div>
-
-      <div class="hero">
-        <div class="wordmark">ANTIFY<span class="thin">.</span></div>
-        <div class="hero-sub">
-          <p class="hero-copy">Considered blanks, printed to order. Two objects, made properly — your design, our press.</p>
-          <div class="hero-index">No minimums<br><strong>Ships worldwide</strong></div>
-        </div>
-      </div>
+        <h1>ANTIFY</h1>
+        <p>A minimalist curation of everyday apparel, functional gear, and modern lifestyle essentials.</p>
     </header>
 
-    <section class="catalog">
-      <div class="catalog-head">
-        <h2>The Collection</h2>
-        <span>02 / 02</span>
-      </div>
+    <div class="store-grid">
+        <!-- PRODUCT 1: Water Bottle -->
+        <div class="product-card">
+            <div>
+                <div class="tag">Gear</div>
+                <div class="product-title">Stainless Steel Water Bottle</div>
+                <div class="product-meta">Sleek matte finish, vacuum insulated, built for ultimate daily durability.</div>
+            </div>
+            <div>
+                <div class="price-row">
+                    <!-- Update with exact Amazon price if needed -->
+                    <span class="current-price">₹499</span> 
+                </div>
+                <!-- REPLACE href WITH YOUR COPY ASSOCIATES LINK -->
+                <a href="https://link.amazon/B00BPx190" target="_blank" class="btn-buy">View on Amazon</a>
+            </div>
+        </div>
 
-      <div class="grid">
+        <!-- PRODUCT 2: Coffee Mug -->
+        <div class="product-card">
+            <div>
+                <div class="tag">Lifestyle</div>
+                <div class="product-title">Custom Coffee Mug</div>
+                <div class="product-meta">Minimalist ceramic layout design. Ergonomic grip for the perfect desk setup.</div>
+            </div>
+            <div>
+                <div class="price-row">
+                    <span class="current-price">₹229</span>
+                </div>
+                <!-- REPLACE href WITH YOUR COPY ASSOCIATES LINK -->
+                <a href="https://link.amazon/B04xieVm5" target="_blank" class="btn-buy">View on Amazon</a>
+            </div>
+        </div>
 
-        <!-- PRODUCT 1: T-SHIRT -->
-        <div class="card">
-          <div class="img-frame">
-            <img src="https://en.pimg.jp/101/455/308/1/101455308.jpg" alt="Premium Custom T-Shirt">
-          </div>
-          <div class="info">
-            <div class="info-top">
-              <div>
+        <!-- PRODUCT 3: Casual T-Shirt -->
+        <div class="product-card">
+            <div>
                 <div class="tag">Apparel</div>
-                <div class="title">Custom T-Shirt</div>
-              </div>
-              <div class="index-num">01</div>
+                <div class="product-title">Casual Essential T-Shirt</div>
+                <div class="product-meta">Premium heavy cotton construction. Boxy fit. Available in S, M, L, XL.</div>
             </div>
-            <p class="desc">Ultra-soft heavyweight cotton, cut clean and printed sharp — built to carry your design without getting in its way.</p>
-            <div class="specs">
-              <span>100% Cotton</span>
-              <span>Heavy Knit</span>
-              <span>Unisex Fit</span>
+            <div>
+                <div class="price-row">
+                    <span class="current-price">₹256</span>
+                </div>
+                <!-- REPLACE href WITH YOUR COPY ASSOCIATES LINK -->
+                <a href="https://link.amazon/B08Eh89fa" target="_blank" class="btn-buy">View on Amazon</a>
             </div>
-            <!-- REPLACE HREF WITH YOUR AMAZON AFFILIATE LINK LATER -->
-            <a href="#" target="_blank" class="btn">Customize on Amazon <span class="arrow">→</span></a>
-          </div>
         </div>
 
-        <!-- PRODUCT 2: COFFEE MUG -->
-        <div class="card">
-          <div class="img-frame">
-            <img src="https://static.vecteezy.com/system/resources/previews/015/339/415/non_2x/3d-render-two-white-coffee-mug-mockup-sublimation-design-or-logo-presentation-on-a-blank-ceramic-cup-without-drink-png.png" alt="Custom Ceramic Coffee Mug">
-          </div>
-          <div class="info">
-            <div class="info-top">
-              <div>
-                <div class="tag">Drinkware</div>
-                <div class="title">Ceramic Mug, 11oz</div>
-              </div>
-              <div class="index-num">02</div>
+        <!-- PRODUCT 4: Spidy T-Shirt -->
+        <div class="product-card">
+            <div>
+                <div class="tag">Apparel</div>
+                <div class="product-title">Casual Spidy T-Shirt</div>
+                <div class="product-meta">Graphic streetwear print variant. Drop-shoulder design. Available in S, M, L, XL.</div>
             </div>
-            <p class="desc">Glossy ceramic with a crisp sublimation finish — holds detail and color long after the coffee's gone cold.</p>
-            <div class="specs">
-              <span>Ceramic</span>
-              <span>11oz</span>
-              <span>Dishwasher Safe</span>
+            <div>
+                <div class="price-row">
+                    <span class="current-price">₹449</span>
+                </div>
+                <!-- REPLACE href WITH YOUR COPY ASSOCIATES LINK -->
+                <a href="https://link.amazon/B0gM50E01" target="_blank" class="btn-buy">View on Amazon</a>
             </div>
-            <!-- REPLACE HREF WITH YOUR AMAZON AFFILIATE LINK LATER -->
-            <a href="#" target="_blank" class="btn">Customize on Amazon <span class="arrow">→</span></a>
-          </div>
         </div>
 
-      </div>
-    </section>
+        <!-- PRODUCT 5: Casual Shoes -->
+        <div class="product-card">
+            <div>
+                <div class="tag">Footwear</div>
+                <div class="product-title">Casual Minimalist Shoes</div>
+                <div class="product-meta">Clean silhouette, lightweight comfort, engineered for daily transit.</div>
+            </div>
+            <div>
+                <div class="price-row">
+                    <span class="current-price">₹659</span>
+                </div>
+                <!-- REPLACE href WITH YOUR COPY ASSOCIATES LINK -->
+                <a href="https://link.amazon/B0c9qWAic" target="_blank" class="btn-buy">View on Amazon</a>
+            </div>
+        </div>
+    </div>
 
     <footer>
-      <div class="footer-grid">
-        <div>
-          <div class="footer-brand">Antify Shop</div>
-          <p class="footer-contact" style="margin-top: 10px;">
-            Questions or custom orders —<br>
-            <a href="mailto:gmail-antify.web@gmail.com">gmail-antify.web@gmail.com</a>
-          </p>
-        </div>
-        <p class="disclosure">As an Amazon Associate, Antify Shop earns from qualifying purchases made through our product links, at no additional cost to you.</p>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Antify Shop</span>
-        <span>All prints final</span>
-      </div>
+        <p><strong>Amazon Associates Program Disclaimer:</strong> As an Amazon Associate, this platform earns from qualifying purchases. Product prices and availability are accurate as of the date/time indicated and are subject to change. Any price and availability information displayed on Amazon at the time of purchase will apply to the purchase of this product.</p>
     </footer>
-  </div>
 
 </body>
 </html>
