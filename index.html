@@ -105,12 +105,13 @@
 
     <div class="filter-container">
         <button class="filter-btn active" onclick="filterDeals('all', event)">All Deals</button>
+        <button class="filter-btn" onclick="filterDeals('rupees200', event)">₹200 Deals</button>
         <button class="filter-btn" onclick="filterDeals('electronics', event)">Electronics</button>
         <button class="filter-btn" onclick="filterDeals('clothing', event)">Clothing</button>
         <button class="filter-btn" onclick="filterDeals('kitchen', event)">Kitchen</button>
         <button class="filter-btn" onclick="filterDeals('utensils', event)">Utensils</button>
     </div>
-
+    
     <div class="store-grid" id="deals-grid">
         <!-- Automation data will overwrite elements dynamically here -->
     </div>
