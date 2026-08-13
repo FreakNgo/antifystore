@@ -11,7 +11,7 @@
             --text-main: #ffffff;
             --text-muted: #888888;
             --accent: #ffffff;
-            --amazon-gold: #ff9900;
+            --border-color: #1a1a1a;
         }
 
         * {
@@ -61,7 +61,7 @@
 
         .product-card {
             background: var(--card-bg);
-            border: 1px solid #1a1a1a;
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 1.5rem;
             display: flex;
@@ -125,18 +125,27 @@
             background-color: #e5e5e5;
         }
 
-        footer {
-            text-align: center;
-            max-width: 700px;
-            border-top: 1px solid #1a1a1a;
-            padding-top: 2rem;
-            margin-top: auto;
+        /* POLICY SECTION LAYOUT */
+        .policy-container {
+            width: 100%;
+            max-width: 800px;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 3rem;
         }
 
-        footer p {
-            font-size: 0.75rem;
+        .policy-container h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .policy-container p {
+            font-size: 0.8rem;
             color: var(--text-muted);
             line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
     </style>
 </head>
@@ -153,15 +162,14 @@
             <div>
                 <div class="tag">Gear</div>
                 <div class="product-title">Stainless Steel Water Bottle</div>
-                <div class="product-meta">Sleek matte finish, vacuum insulated, built for ultimate daily durability.</div>
+                <div class="product-meta">Sleek matte finish, vacuum insulated. Engineered for daily durability. (Qty: 3)</div>
             </div>
             <div>
                 <div class="price-row">
-                    <!-- Update with exact Amazon price if needed -->
                     <span class="current-price">₹499</span> 
                 </div>
-                <!-- REPLACE href WITH YOUR COPY ASSOCIATES LINK -->
-                <a href="https://link.amazon/B00BPx190" target="_blank" class="btn-buy">View on Amazon</a>
+                <!-- Swapped to target blank to force clear browser navigation out of document preview contexts -->
+                <a href="https://link.amazon/B00BPx190" target="_blank" rel="noopener" class="btn-buy">View on Amazon</a>
             </div>
         </div>
 
@@ -176,8 +184,7 @@
                 <div class="price-row">
                     <span class="current-price">₹229</span>
                 </div>
-                <!-- REPLACE href WITH YOUR COPY ASSOCIATES LINK -->
-                <a href="https://link.amazon/B04xieVm5" target="_blank" class="btn-buy">View on Amazon</a>
+                <a href="https://link.amazon/B04xieVm5" target="_blank" rel="noopener" class="btn-buy">View on Amazon</a>
             </div>
         </div>
 
@@ -186,14 +193,13 @@
             <div>
                 <div class="tag">Apparel</div>
                 <div class="product-title">Casual Essential T-Shirt</div>
-                <div class="product-meta">Premium heavy cotton construction. Boxy fit. Available in S, M, L, XL.</div>
+                <div class="product-meta">Premium cotton construction. Boxy fit. Available sizes: S, M, L, XL.</div>
             </div>
             <div>
                 <div class="price-row">
                     <span class="current-price">₹256</span>
                 </div>
-                <!-- REPLACE href WITH YOUR COPY ASSOCIATES LINK -->
-                <a href="https://link.amazon/B08Eh89fa" target="_blank" class="btn-buy">View on Amazon</a>
+                <a href="https://link.amazon/B08Eh89fa" target="_blank" rel="noopener" class="btn-buy">View on Amazon</a>
             </div>
         </div>
 
@@ -202,14 +208,13 @@
             <div>
                 <div class="tag">Apparel</div>
                 <div class="product-title">Casual Spidy T-Shirt</div>
-                <div class="product-meta">Graphic streetwear print variant. Drop-shoulder design. Available in S, M, L, XL.</div>
+                <div class="product-meta">Graphic streetwear print variant. Drop-shoulder design. Sizes: S, M, L, XL.</div>
             </div>
             <div>
                 <div class="price-row">
                     <span class="current-price">₹449</span>
                 </div>
-                <!-- REPLACE href WITH YOUR COPY ASSOCIATES LINK -->
-                <a href="https://link.amazon/B0gM50E01" target="_blank" class="btn-buy">View on Amazon</a>
+                <a href="https://link.amazon/B0gM50E01" target="_blank" rel="noopener" class="btn-buy">View on Amazon</a>
             </div>
         </div>
 
@@ -224,15 +229,19 @@
                 <div class="price-row">
                     <span class="current-price">₹659</span>
                 </div>
-                <!-- REPLACE href WITH YOUR COPY ASSOCIATES LINK -->
-                <a href="https://link.amazon/B0c9qWAic" target="_blank" class="btn-buy">View on Amazon</a>
+                <a href="https://link.amazon/B0c9qWAic" target="_blank" rel="noopener" class="btn-buy">View on Amazon</a>
             </div>
         </div>
     </div>
 
-    <footer>
-        <p><strong>Amazon Associates Program Disclaimer:</strong> As an Amazon Associate, this platform earns from qualifying purchases. Product prices and availability are accurate as of the date/time indicated and are subject to change. Any price and availability information displayed on Amazon at the time of purchase will apply to the purchase of this product.</p>
-    </footer>
+    <!-- MANDATORY COMPLIANCE & PRIVACY SECTION -->
+    <div class="policy-container">
+        <h2>Amazon Associates Program Earnings Disclosure</h2>
+        <p>As an Amazon Associate, Antify earns from qualifying purchases. This means that when you click on links to various products on this site and make a purchase, this can result in a commission that is credited to this platform. Product prices and availability are accurate as of the date indicated and are subject to change.</p>
+
+        <h2>Privacy Policy</h2>
+        <p>We value your privacy. Antify does not directly collect, harvest, store, or share any personal identity markers or transaction data from our visitors. All product outbound actions route securely through the Amazon Associates framework. Amazon uses tracking identifiers to monitor traffic and process referral interactions in complete accordance with the Amazon Operating Agreement.</p>
+    </div>
 
 </body>
 </html>
