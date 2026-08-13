@@ -3,774 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antify Store - Daily Amazon Deals</title>
+    <title>Antify Store - Curated Deals & Finds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --primary: #6366f1;
-            --primary-hover: #4f46e5;
-            --bg: #fafafa;
-            --surface: #ffffff;
-            --text: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            padding: 2rem 1rem;
-            line-height: 1.5;
-        }
-
-        header {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 3rem auto;
-        }
-
-        .eyebrow {
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.75rem;
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            max-width: 800px;
-            margin: 0 auto 2.5rem auto;
-        }
-
-        .filter-btn {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1.25rem;
-            border-radius: 9999px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .filter-btn:hover {
-            border-color: var(--text-muted);
-        }
-
-        .filter-btn.active {
-            background: var(--text);
-            color: var(--surface);
-            border-color: var(--text);
-        }
-
-        .store-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .deal-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .deal-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 20px -8px rgba(0,0,0,0.08);
-        }
-
-        .badge-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .cat-badge {
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-        }
-
-        .disc-badge {
-            background: #fee2e2;
-            color: #ef4444;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.375rem;
-        }
-
-        .deal-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
-        }
-
-        .deal-desc {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .price-container {
-            display: flex;
-            align-items: baseline;
-            gap: 0.5rem;
-            margin-bottom: 1.25rem;
-            border-top: 1px solid var(--border);
-            padding-top: 1rem;
-        }
-
-        .current-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #b45309;
-        }
-
-        .old-price {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            text-decoration: line-through;
-        }
-
-        .deal-btn {
-            background: var(--primary);
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: background 0.2s ease;
-        }
-
-        .deal-btn:hover {
-            background: var(--primary-hover);
-        }
-
-        .policy-container {
-            max-width: 800px;
-            margin: 5rem auto 0 auto;
-            border-top: 1px solid var(--border);
-            padding-top: 2rem;
-            text-align: center;
-        }
-        .policy-container h2 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text); }
-        .policy-container p { font-size: 0.85rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+        .category-btn.active { background-color: #2563eb; color: white; }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
 
-    <header>
-        <div class="eyebrow">Curated Flash Sales</div>
-        <h1>Best Deals at Amazon</h1>
-        <p>Handpicked, heavy-discount budget products updated automatically every hour.</p>
+    <!-- Header / Brand Section -->
+    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <h1 class="text-2xl font-black tracking-tight text-blue-600">ANTIFY <span class="text-gray-800 font-normal">STORE</span></h1>
+            <p class="text-sm text-gray-500 font-medium text-center sm:text-right">Your Handpicked Curated Product Guide</p>
+        </div>
     </header>
 
-    <div class="filter-container">
-        <button class="filter-btn active" onclick="filterDeals('all', event)">All Deals</button>
-        <button class="filter-btn" onclick="filterDeals('rupees200', event)">₹200 Deals</button>
-        <button class="filter-btn" onclick="filterDeals('electronics', event)">Electronics</button>
-        <button class="filter-btn" onclick="filterDeals('clothing', event)">Clothing</button>
-        <button class="filter-btn" onclick="filterDeals('kitchen', event)">Kitchen</button>
-        <button class="filter-btn" onclick="filterDeals('utensils', event)">Utensils</button>
+    <!-- Navigation Filters -->
+    <div class="bg-gray-100 py-3 border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 flex flex-wrap gap-2 justify-center">
+            <button onclick="filterCategory('all')" id="btn-all" class="category-btn active px-4 py-2 text-sm font-semibold rounded-full border bg-white shadow-sm transition">All Finds</button>
+            <button onclick="filterCategory('rupees200')" id="btn-rupees200" class="category-btn px-4 py-2 text-sm font-semibold rounded-full border bg-white shadow-sm transition">Under ₹200 Finds</button>
+            <button onclick="filterCategory('electronics')" id="btn-electronics" class="category-btn px-4 py-2 text-sm font-semibold rounded-full border bg-white shadow-sm transition">Electronics</button>
+            <button onclick="filterCategory('clothing')" id="btn-clothing" class="category-btn px-4 py-2 text-sm font-semibold rounded-full border bg-white shadow-sm transition">Clothing</button>
+            <button onclick="filterCategory('kitchen')" id="btn-kitchen" class="category-btn px-4 py-2 text-sm font-semibold rounded-full border bg-white shadow-sm transition">Kitchen</button>
+            <button onclick="filterCategory('utensils')" id="btn-utensils" class="category-btn px-4 py-2 text-sm font-semibold rounded-full border bg-white shadow-sm transition">Utensils</button>
+        </div>
     </div>
 
-    <div class="store-grid" id="deals-grid">
-        <!-- Automation data will overwrite elements dynamically here -->
-    </div>
+    <!-- Main Dynamic Products Grid -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-8">
+        <div id="deals-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Rendered by Script -->
+        </div>
+    </main>
 
-    <div class="policy-container">
-        <div class="eyebrow">Legal</div>
-        <h2>Amazon Associates Program Earnings Disclosure</h2>
-        <p>As an Amazon Associate, Antify earns from qualifying purchases. Real-time pricing and availability are maintained by automated verification checks matching seller system structures.</p>
-    </div>
+    <!-- Safe & Compliant Footer Structure -->
+    <footer class="bg-gray-900 text-gray-400 text-xs py-8 border-t border-gray-800 mt-12">
+        <div class="max-w-4xl mx-auto px-4 text-center space-y-4">
+            <!-- Mandatory Amazon Affiliate Disclosure -->
+            <p class="text-gray-300 font-medium leading-relaxed bg-gray-800/50 p-3 rounded border border-gray-700">
+                Disclaimer: As an Amazon Associate, I earn from qualifying purchases. When you click on links to various merchants on this site and make a purchase, this can result in this site earning a commission.
+            </p>
+            <p>&copy; 2026 Antify Store. All product parameters are subject to real-time verification directly on Amazon.in.</p>
+        </div>
+    </footer>
 
     <script>
-        const dailyDeals = [
- {
-  "id": 1,
-  "category": "rupees200",
-  "title": "Portronics Fast Charging Cable",
-  "desc": "Heavy-duty durable data sync charging cord for smartphones.",
-  "oldPrice": "₹399",
-  "price": "₹99",
-  "discount": "75% OFF",
-  "link": "https://www.amazon.in/s?k=Portronics+Fast+Charging+Cable&tag=antify-21"
- },
- {
-  "id": 2,
-  "category": "rupees200",
-  "title": "Gizga Essentials Microfiber Cloths",
-  "desc": "Ultra-soft absorbent cleaning cloths for laptops, tabs and screens.",
-  "oldPrice": "₹499",
-  "price": "₹149",
-  "discount": "70% OFF",
-  "link": "https://www.amazon.in/s?k=Gizga+Essentials+Microfiber+Cloths&tag=antify-21"
- },
- {
-  "id": 3,
-  "category": "rupees200",
-  "title": "ELV Desktop Mobile Stand",
-  "desc": "Premium multi-angle adjustable desktop holder for all smartphones.",
-  "oldPrice": "₹499",
-  "price": "₹149",
-  "discount": "70% OFF",
-  "link": "https://www.amazon.in/s?k=ELV+Desktop+Mobile+Stand&tag=antify-21"
- },
- {
-  "id": 4,
-  "category": "rupees200",
-  "title": "Syska 9W LED Base Bulb",
-  "desc": "Energy efficient bright home lighting solution bulb base.",
-  "oldPrice": "₹250",
-  "price": "₹99",
-  "discount": "60% OFF",
-  "link": "https://www.amazon.in/s?k=Syska+9W+LED+Base+Bulb&tag=antify-21"
- },
- {
-  "id": 5,
-  "category": "rupees200",
-  "title": "Cello H2O Plastic Bottle Set",
-  "desc": "BPA-free food grade durable water bottles for daily home use.",
-  "oldPrice": "₹499",
-  "price": "₹199",
-  "discount": "60% OFF",
-  "link": "https://www.amazon.in/s?k=Cello+H2O+Plastic+Bottle+Set&tag=antify-21"
- },
- {
-  "id": 6,
-  "category": "rupees200",
-  "title": "Pidilite Fevikwik Instant Gel",
-  "desc": "Super strong instant adhesive glue for multiple repairs.",
-  "oldPrice": "₹150",
-  "price": "₹49",
-  "discount": "67% OFF",
-  "link": "https://www.amazon.in/s?k=Pidilite+Fevikwik+Instant+Gel&tag=antify-21"
- },
- {
-  "id": 7,
-  "category": "rupees200",
-  "title": "Scotch-Brite Kitchen Sponge",
-  "desc": "Heavy duty scrub pads for effective kitchen utensil cleaning.",
-  "oldPrice": "₹199",
-  "price": "₹89",
-  "discount": "55% OFF",
-  "link": "https://www.amazon.in/s?k=Scotch-Brite+Kitchen+Sponge&tag=antify-21"
- },
- {
-  "id": 8,
-  "category": "rupees200",
-  "title": "Dettol Liquid Handwash Refill",
-  "desc": "Effective germ protection handwash fluid skin gentle formula.",
-  "oldPrice": "₹199",
-  "price": "₹99",
-  "discount": "50% OFF",
-  "link": "https://www.amazon.in/s?k=Dettol+Liquid+Handwash+Refill&tag=antify-21"
- },
- {
-  "id": 9,
-  "category": "rupees200",
-  "title": "Wipro 9W Smart LED Bulb",
-  "desc": "Energy saver lighting accent base for small room setups.",
-  "oldPrice": "₹350",
-  "price": "₹149",
-  "discount": "57% OFF",
-  "link": "https://www.amazon.in/s?k=Wipro+9W+Smart+LED+Bulb&tag=antify-21"
- },
- {
-  "id": 10,
-  "category": "rupees200",
-  "title": "Classmate Octane Gel Pens",
-  "desc": "Smooth flowing dark ink gel pens pack for regular writing.",
-  "oldPrice": "₹200",
-  "price": "₹99",
-  "discount": "50% OFF",
-  "link": "https://www.amazon.in/s?k=Classmate+Octane+Gel+Pens&tag=antify-21"
- },
- {
-  "id": 11,
-  "category": "electronics",
-  "title": "boAt Bassheads 100 Wired Earphones",
-  "desc": "In-ear wired earphones with super extra bass and integrated mic.",
-  "oldPrice": "₹999",
-  "price": "₹399",
-  "discount": "60% OFF",
-  "link": "https://www.amazon.in/s?k=boAt+Bassheads+100+Wired+Earphones&tag=antify-21"
- },
- {
-  "id": 12,
-  "category": "electronics",
-  "title": "SanDisk Cruzer Blade 32GB USB",
-  "desc": "Ultra-compact portable flash drive for effortless data backups.",
-  "oldPrice": "₹650",
-  "price": "₹299",
-  "discount": "54% OFF",
-  "link": "https://www.amazon.in/s?k=SanDisk+Cruzer+Blade+32GB+USB&tag=antify-21"
- },
- {
-  "id": 13,
-  "category": "electronics",
-  "title": "Logitech M170 Wireless Mouse",
-  "desc": "Reliable 2.4GHz wireless tracking precise compact mouse setup.",
-  "oldPrice": "₹895",
-  "price": "₹599",
-  "discount": "33% OFF",
-  "link": "https://www.amazon.in/s?k=Logitech+M170+Wireless+Mouse&tag=antify-21"
- },
- {
-  "id": 14,
-  "category": "electronics",
-  "title": "TP-Link TL-WA850RE Wifi Extender",
-  "desc": "Universal wall-plug wireless network signal booster station.",
-  "oldPrice": "₹2,999",
-  "price": "₹1,299",
-  "discount": "56% OFF",
-  "link": "https://www.amazon.in/s?k=TPLink+TLWA850RE+Wifi+Extender&tag=antify-21"
- },
- {
-  "id": 15,
-  "category": "electronics",
-  "title": "JBL C100SI Wired Headphones",
-  "desc": "Premium signature sound quality in-ear dynamic clear bass set.",
-  "oldPrice": "₹1,299",
-  "price": "₹599",
-  "discount": "54% OFF",
-  "link": "https://www.amazon.in/s?k=JBL+C100SI+Wired+Headphones&tag=antify-21"
- },
- {
-  "id": 16,
-  "category": "electronics",
-  "title": "Mi 10W Fast Charger Adapter",
-  "desc": "Safe multi-protection reliable power delivery wall block travel charger.",
-  "oldPrice": "₹599",
-  "price": "₹399",
-  "discount": "33% OFF",
-  "link": "https://www.amazon.in/s?k=Mi+10W+Fast+Charger+Adapter&tag=antify-21"
- },
- {
-  "id": 17,
-  "category": "electronics",
-  "title": "boAt Wave Call Smartwatch",
-  "desc": "Advanced tracking sleek display layout bluetooth calling wrist wearable.",
-  "oldPrice": "₹7,990",
-  "price": "₹1,299",
-  "discount": "83% OFF",
-  "link": "https://www.amazon.in/s?k=boAt+Wave+Call+Smartwatch&tag=antify-21"
- },
- {
-  "id": 18,
-  "category": "electronics",
-  "title": "Zebronics Bluetooth Soundbar",
-  "desc": "Compact dual speaker module setup for theatre room audio expansion.",
-  "oldPrice": "₹3,499",
-  "price": "₹999",
-  "discount": "71% OFF",
-  "link": "https://www.amazon.in/s?k=Zebronics+Bluetooth+Soundbar&tag=antify-21"
- },
- {
-  "id": 19,
-  "category": "electronics",
-  "title": "Ambrane 10000mAh Power Bank",
-  "desc": "Dual output fast lithium polymer compact battery storage station.",
-  "oldPrice": "₹1,499",
-  "price": "₹699",
-  "discount": "53% OFF",
-  "link": "https://www.amazon.in/s?k=Ambrane+10000mAh+Power+Bank&tag=antify-21"
- },
- {
-  "id": 20,
-  "category": "electronics",
-  "title": "Syska 4-Way Extension Board",
-  "desc": "Surge protector multi-plug grid with long heavy wire insulation.",
-  "oldPrice": "₹999",
-  "price": "₹449",
-  "discount": "55% OFF",
-  "link": "https://www.amazon.in/s?k=Syska+4Way+Extension+Board&tag=antify-21"
- },
- {
-  "id": 21,
-  "category": "clothing",
-  "title": "Alan Jones Cotton Sweatshirt",
-  "desc": "Premium comfortable breathable long sleeve casual winter wear.",
-  "oldPrice": "₹1,999",
-  "price": "₹599",
-  "discount": "70% OFF",
-  "link": "https://www.amazon.in/s?k=Alan+Jones+Cotton+Sweatshirt&tag=antify-21"
- },
- {
-  "id": 22,
-  "category": "clothing",
-  "title": "Symbol Men Cotton Polo Tee",
-  "desc": "Classic polo collar solid casual regular fit t-shirt clothing.",
-  "oldPrice": "₹1,199",
-  "price": "₹399",
-  "discount": "66% OFF",
-  "link": "https://www.amazon.in/s?k=Symbol+Men+Cotton+Polo+Tee&tag=antify-21"
- },
- {
-  "id": 23,
-  "category": "clothing",
-  "title": "Lymio Casual Men Trackpants",
-  "desc": "Regular fit athletic training joggers track pants with pockets.",
-  "oldPrice": "₹1,499",
-  "price": "₹449",
-  "discount": "70% OFF",
-  "link": "https://www.amazon.in/s?k=Lymio+Casual+Men+Trackpants&tag=antify-21"
- },
- {
-  "id": 24,
-  "category": "clothing",
-  "title": "Van Heusen Men Cotton Briefs",
-  "desc": "Super combed daily elasticated waist inner clothing essential.",
-  "oldPrice": "₹599",
-  "price": "₹349",
-  "discount": "41% OFF",
-  "link": "https://www.amazon.in/s?k=Van+Heusen+Men+Cotton+Briefs&tag=antify-21"
- },
- {
-  "id": 25,
-  "category": "clothing",
-  "title": "Max Men Solid Regular T-Shirt",
-  "desc": "Soft daily crew neck premium cotton blend comfort fit tee.",
-  "oldPrice": "₹699",
-  "price": "₹299",
-  "discount": "57% OFF",
-  "link": "https://www.amazon.in/s?k=Max+Men+Solid+Regular+TShirt&tag=antify-21"
- },
- {
-  "id": 26,
-  "category": "clothing",
-  "title": "Puma Unisex Ankle Socks Pack",
-  "desc": "Cushioned performance knit sport training foot accessory bundle.",
-  "oldPrice": "₹499",
-  "price": "₹299",
-  "discount": "40% OFF",
-  "link": "https://www.amazon.in/s?k=Puma+Unisex+Ankle+Socks+Pack&tag=antify-21"
- },
- {
-  "id": 27,
-  "category": "clothing",
-  "title": "Bata Men Formal Leather Shoes",
-  "desc": "Durable uniform dress footwear with sleek comfort base design.",
-  "oldPrice": "₹1,999",
-  "price": "₹999",
-  "discount": "50% OFF",
-  "link": "https://www.amazon.in/s?k=Bata+Men+Formal+Leather+Shoes&tag=antify-21"
- },
- {
-  "id": 28,
-  "category": "clothing",
-  "title": "Levis Men Straight Fit Jeans",
-  "desc": "Classic heavy denim vintage washed long-lasting styling pants.",
-  "oldPrice": "₹3,299",
-  "price": "₹1,499",
-  "discount": "54% OFF",
-  "link": "https://www.amazon.in/s?k=Levis+Men+Straight+Fit+Jeans&tag=antify-21"
- },
- {
-  "id": 29,
-  "category": "clothing",
-  "title": "Adidas Sports Track Jacket",
-  "desc": "Full zip athletic performance windcheater running active wear.",
-  "oldPrice": "₹3,999",
-  "price": "₹1,799",
-  "discount": "55% OFF",
-  "link": "https://www.amazon.in/s?k=Adidas+Sports+Track+Jacket&tag=antify-21"
- },
- {
-  "id": 30,
-  "category": "clothing",
-  "title": "Wildhorn Leather Men Wallet",
-  "desc": "Premium finish multi slot bifold pocket credit card companion.",
-  "oldPrice": "₹1,199",
-  "price": "₹399",
-  "discount": "66% OFF",
-  "link": "https://www.amazon.in/s?k=Wildhorn+Leather+Men+Wallet&tag=antify-21"
- },
- {
-  "id": 31,
-  "category": "kitchen",
-  "title": "Pigeon Polypropylene Mini Chopper",
-  "desc": "Handy manual dynamic pull-string fruit and vegetable chopper.",
-  "oldPrice": "₹495",
-  "price": "₹249",
-  "discount": "50% OFF",
-  "link": "https://www.amazon.in/s?k=Pigeon+Polypropylene+Mini+Chopper&tag=antify-21"
- },
- {
-  "id": 32,
-  "category": "kitchen",
-  "title": "Cello H2O Stainless Steel Bottle",
-  "desc": "Durable premium mirror finish cold storage single wall flask.",
-  "oldPrice": "₹999",
-  "price": "₹399",
-  "discount": "60% OFF",
-  "link": "https://www.amazon.in/s?k=Cello+H2O+Stainless+Steel+Bottle&tag=antify-21"
- },
- {
-  "id": 33,
-  "category": "kitchen",
-  "title": "Kuber Industries Storage Containers",
-  "desc": "Airtight food-grade modular kitchen space organizer boxes.",
-  "oldPrice": "₹599",
-  "price": "₹249",
-  "discount": "58% OFF",
-  "link": "https://www.amazon.in/s?k=Kuber+Industries+Storage+Containers&tag=antify-21"
- },
- {
-  "id": 34,
-  "category": "kitchen",
-  "title": "Milton Thermosteel Hot Flask",
-  "desc": "Vacuum insulated long duration tea coffee temperature maintainer.",
-  "oldPrice": "₹1,299",
-  "price": "₹799",
-  "discount": "38% OFF",
-  "link": "https://www.amazon.in/s?k=Milton+Thermosteel+Hot+Flask&tag=antify-21"
- },
- {
-  "id": 35,
-  "category": "kitchen",
-  "title": "Prestige Electric Kettle 1.5L",
-  "desc": "Automatic cut off rapid boil stainless steel liquid heater.",
-  "oldPrice": "₹1,195",
-  "price": "₹699",
-  "discount": "41% OFF",
-  "link": "https://www.amazon.in/s?k=Prestige+Electric+Kettle+1.5L&tag=antify-21"
- },
- {
-  "id": 36,
-  "category": "kitchen",
-  "title": "Butterfly Premium Gas Stove",
-  "desc": "Toughened glass top dual burner high efficiency brass setup.",
-  "oldPrice": "₹4,999",
-  "price": "₹1,999",
-  "discount": "60% OFF",
-  "link": "https://www.amazon.in/s?k=Butterfly+Premium+Gas+Stove&tag=antify-21"
- },
- {
-  "id": 37,
-  "category": "kitchen",
-  "title": "Borosil Glass Lunch Box Set",
-  "desc": "Microwave safe leakproof office meal container set bags.",
-  "oldPrice": "₹1,199",
-  "price": "₹649",
-  "discount": "46% OFF",
-  "link": "https://www.amazon.in/s?k=Borosil+Glass+Lunch+Box+Set&tag=antify-21"
- },
- {
-  "id": 38,
-  "category": "kitchen",
-  "title": "Kent 16068 Hand Milk Blender",
-  "desc": "Powerful low noise electrical quick mix beverage whisk layout.",
-  "oldPrice": "₹1,999",
-  "price": "₹999",
-  "discount": "50% OFF",
-  "link": "https://www.amazon.in/s?k=Kent+16068+Hand+Milk+Blender&tag=antify-21"
- },
- {
-  "id": 39,
-  "category": "kitchen",
-  "title": "AmazonBasics Silicone Baking Mats",
-  "desc": "Reusable non stick sheet tray liner tool configuration panels.",
-  "oldPrice": "₹799",
-  "price": "₹399",
-  "discount": "50% OFF",
-  "link": "https://www.amazon.in/s?k=AmazonBasics+Silicone+Baking+Mats&tag=antify-21"
- },
- {
-  "id": 40,
-  "category": "kitchen",
-  "title": "Hawkins Contura Pressure Cooker",
-  "desc": "Hard anodized reliable performance faster uniform heating pot.",
-  "oldPrice": "₹2,100",
-  "price": "₹1,499",
-  "discount": "28% OFF",
-  "link": "https://www.amazon.in/s?k=Hawkins+Contura+Pressure+Cooker&tag=antify-21"
- },
- {
-  "id": 41,
-  "category": "utensils",
-  "title": "Prestige Aluminium Non-Stick Tawa",
-  "desc": "Omni non-stick induction base premium frying durable griddle.",
-  "oldPrice": "₹1,200",
-  "price": "₹699",
-  "discount": "41% OFF",
-  "link": "https://www.amazon.in/s?k=Prestige+Aluminium+NonStick+Tawa&tag=antify-21"
- },
- {
-  "id": 42,
-  "category": "utensils",
-  "title": "Signoraware Serving Ladles Set",
-  "desc": "Heat-resistant premium non-scratch modular cooking spoon kit.",
-  "oldPrice": "₹450",
-  "price": "₹199",
-  "discount": "55% OFF",
-  "link": "https://www.amazon.in/s?k=Signoraware+Serving+Ladles+Set&tag=antify-21"
- },
- {
-  "id": 43,
-  "category": "utensils",
-  "title": "Hawkins Stainless Steel Saucepan",
-  "desc": "Induction compatible heavy gauge tea milk cooking vessel pan.",
-  "oldPrice": "₹950",
-  "price": "₹649",
-  "discount": "31% OFF",
-  "link": "https://www.amazon.in/s?k=Hawkins+Stainless+Steel+Saucepan&tag=antify-21"
- },
- {
-  "id": 44,
-  "category": "utensils",
-  "title": "Pigeon Non-Stick Kitchen Set",
-  "desc": "Three piece premium cooktop kadhai frying pan flat tawa bundle.",
-  "oldPrice": "₹2,499",
-  "price": "₹1,199",
-  "discount": "52% OFF",
-  "link": "https://www.amazon.in/s?k=Pigeon+NonStick+Kitchen+Set&tag=antify-21"
- },
- {
-  "id": 45,
-  "category": "utensils",
-  "title": "Meyer Stainless Steel Kadhai",
-  "desc": "Thick triple layer base anti scratch premium stir fry deep wok.",
-  "oldPrice": "₹2,999",
-  "price": "₹1,799",
-  "discount": "40% OFF",
-  "link": "https://www.amazon.in/s?k=Meyer+Stainless+Steel+Kadhai&tag=antify-21"
- },
- {
-  "id": 46,
-  "category": "utensils",
-  "title": "Wonderchef Granite Cookware Set",
-  "desc": "Die cast heavy construction non stick multi purpose designer pots.",
-  "oldPrice": "₹4,399",
-  "price": "₹2,199",
-  "discount": "50% OFF",
-  "link": "https://www.amazon.in/s?k=Wonderchef+Granite+Cookware+Set&tag=antify-21"
- },
- {
-  "id": 47,
-  "category": "utensils",
-  "title": "Vinod Stainless Steel Idli Maker",
-  "desc": "Multi tier steam container module for traditional south cooking.",
-  "oldPrice": "₹1,899",
-  "price": "₹1,149",
-  "discount": "39% OFF",
-  "link": "https://www.amazon.in/s?k=Vinod+Stainless+Steel+Idli+Maker&tag=antify-21"
- },
- {
-  "id": 48,
-  "category": "utensils",
-  "title": "Choity Potato Wave Masher",
-  "desc": "Comfortable grip grid mesh pure smooth manual vegetable masher.",
-  "oldPrice": "₹349",
-  "price": "₹129",
-  "discount": "63% OFF",
-  "link": "https://www.amazon.in/s?k=Choity+Potato+Wave+Masher&tag=antify-21"
- },
- {
-  "id": 49,
-  "category": "utensils",
-  "title": "Cartini Stainless Kitchen Scissors",
-  "desc": "Razor sharp multi utility household scaling bone snipper tool.",
-  "oldPrice": "₹499",
-  "price": "₹249",
-  "discount": "50% OFF",
-  "link": "https://www.amazon.in/s?k=Cartini+Stainless+Kitchen+Scissors&tag=antify-21"
- },
- {
-  "id": 50,
-  "category": "utensils",
-  "title": "Dynamic Stainless Steel Whisks",
-  "desc": "Heavy looping wire manual balloon cream egg blending tools.",
-  "oldPrice": "₹399",
-  "price": "₹149",
-  "discount": "62% OFF",
-  "link": "https://www.amazon.in/s?k=Dynamic+Stainless+Steel+Whisks&tag=antify-21"
- }
-];
+        // Target dynamic array placement
+        const dailyDeals = [];
 
-        function renderDeals(dealsToShow) {
-            const grid = document.getElementById('deals-grid');
-            grid.innerHTML = '';
+        function renderDeals(items) {
+            const container = document.getElementById('deals-container');
+            container.innerHTML = '';
             
-            if(dealsToShow.length === 0) {
-                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 3rem 0;">No matching hot deals found right now. Check back shortly!</div>';
+            if(items.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500 font-medium">No deals listed in this section currently. Check back later!</div>`;
                 return;
             }
 
-            dealsToShow.forEach(deal => {
+            items.forEach(deal => {
                 const card = document.createElement('div');
-                card.className = 'deal-card';
+                card.className = "bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition flex flex-col justify-between";
                 card.innerHTML = `
-                    <div class="badge-container">
-                        <span class="cat-badge">${deal.category === 'rupees200' ? '₹200 Deal' : deal.category}</span>
-                        <span class="disc-badge">${deal.discount}</span>
+                    <div class="p-4">
+                        <span class="inline-block px-2.5 py-1 text-[10px] font-black uppercase tracking-wider bg-blue-50 text-blue-600 rounded mb-3">${deal.label}</span>
+                        <h3 class="font-bold text-gray-900 text-base line-clamp-2 mb-1">${deal.title}</h3>
+                        <p class="text-xs text-gray-500 line-clamp-3 mb-4">${deal.desc}</p>
                     </div>
-                    <h3 class="deal-title">${deal.title}</h3>
-                    <p class="deal-desc">${deal.desc}</p>
-                    <div class="price-container">
-                        <span class="old-price">${deal.oldPrice}</span>
-                        <span class="current-price">${deal.price}</span>
+                    <div class="p-4 pt-0">
+                        <a href="${deal.link}" target="_blank" rel="noopener noreferrer" 
+                           class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm py-2.5 px-4 rounded-lg shadow-sm transition">
+                            Check Live Price
+                        </a>
                     </div>
-                    <a href="${deal.link}" target="_blank" rel="noopener noreferrer" class="deal-btn">Buy on Amazon</a>
                 `;
-                grid.appendChild(card);
+                container.appendChild(card);
             });
         }
 
-        function filterDeals(category, event) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            if(event) {
-                event.target.classList.add('active');
-            }
+        function filterCategory(catName) {
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${catName}`).classList.add('active');
             
-            if (category === 'all') {
+            if(catName === 'all') {
                 renderDeals(dailyDeals);
             } else {
-                const filtered = dailyDeals.filter(d => d.category === category);
+                const filtered = dailyDeals.filter(d => d.category === catName);
                 renderDeals(filtered);
             }
         }
 
+        // Initialize Store View
         window.addEventListener('DOMContentLoaded', () => {
-            filterDeals('all');
+            renderDeals(dailyDeals);
         });
     </script>
 </body>
