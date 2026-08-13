@@ -1,9 +1,9 @@
-name: Daily Amazon Deals Update Tracker
+name: Hourly Amazon Deals Update Tracker
 
 on:
   schedule:
-    - cron: '0 4 * * *' 
-  workflow_dispatch: 
+    - cron: '0 * * * *' # Tells GitHub to run exactly every 1 hour
+  workflow_dispatch: # Allows us to trigger it manually right now!
 
 jobs:
   build-and-deploy:
@@ -28,5 +28,36 @@ jobs:
           git config --global user.name "Antify Automation Bot"
           git config --global user.email "bot@antify.local"
           git add index.html
-          git commit -m "Auto-update: Refreshing daily deals catalog [skip ci]" || exit 0
+          git commit -m "Auto-update: Refreshing budget deals catalog [skip ci]" || exit 0
+          git pushname: Hourly Amazon Deals Update Tracker
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Tells GitHub to run exactly every 1 hour
+  workflow_dispatch: # Allows us to trigger it manually right now!
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js Runtime Environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install axios
+
+      - name: Execute Live Scraper & Inject Tags
+        run: node update_deals.js
+
+      - name: Commit and Push Changes to Main
+        run: |
+          git config --global user.name "Antify Automation Bot"
+          git config --global user.email "bot@antify.local"
+          git add index.html
+          git commit -m "Auto-update: Refreshing budget deals catalog [skip ci]" || exit 0
           git push
