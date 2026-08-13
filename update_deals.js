@@ -3,7 +3,6 @@ const path = require('path');
 
 const AFFILIATE_TAG = 'antify-21';
 
-// Full 50-Product Catalog using verified active Amazon India ASINs
 const freshDeals = [
     // === ₹200 DEALS CATEGORY ===
     { id: 1, category: 'rupees200', title: 'Portronics Fast Charging Cable', desc: 'Heavy-duty durable data sync charging cord for smartphones.', oldPrice: '₹399', price: '₹99', discount: '75% OFF', link: `https://www.amazon.in/dp/B0821213P7?tag=${AFFILIATE_TAG}` },
@@ -12,7 +11,7 @@ const freshDeals = [
     { id: 4, category: 'rupees200', title: 'Syska 9W LED Base Bulb', desc: 'Energy efficient bright home lighting solution bulb base.', oldPrice: '₹250', price: '₹99', discount: '60% OFF', link: `https://www.amazon.in/dp/B00V49B8M8?tag=${AFFILIATE_TAG}` },
     { id: 5, category: 'rupees200', title: 'Cello H2O Plastic Bottle Set', desc: 'BPA-free food grade durable water bottles for daily home use.', oldPrice: '₹499', price: '₹199', discount: '60% OFF', link: `https://www.amazon.in/dp/B07N6P3N5B?tag=${AFFILIATE_TAG}` },
     { id: 6, category: 'rupees200', title: 'Pidilite Fevikwik Instant Gel', desc: 'Super strong instant adhesive glue for multiple repairs.', oldPrice: '₹150', price: '₹49', discount: '67% OFF', link: `https://www.amazon.in/dp/B07K5K621V?tag=${AFFILIATE_TAG}` },
-    { id: 7, category: 'rupees200', title: 'Scotch-Brite Kitchen Sponge', desc: 'Heavy duty scrub pads for effective kitchen utensil cleaning.', oldPrice: '₹199', price: '₹89', discount: '55% OFF', link: `https://www.amazon.in/dp/B00V49B8N8?tag=${AFFILIATE_TAG}` },
+    { id: 7, category: 'rupees200', title: 'Scotch-Brite Kitchen Sponge', desc: 'Heavy duty scrub pads for effective kitchen utensil cleaning.', oldPrice: '₹199', price: '₹89', discount: '55% OFF', link: `https://www.amazon.in/dp/B00V49B8M8?tag=${AFFILIATE_TAG}` },
     { id: 8, category: 'rupees200', title: 'Dettol Liquid Handwash Refill', desc: 'Effective germ protection handwash fluid skin gentle formula.', oldPrice: '₹199', price: '₹99', discount: '50% OFF', link: `https://www.amazon.in/dp/B015W9BL60?tag=${AFFILIATE_TAG}` },
     { id: 9, category: 'rupees200', title: 'Wipro 9W Smart LED Bulb', desc: 'Energy saver lighting accent base for small room setups.', oldPrice: '₹350', price: '₹149', discount: '57% OFF', link: `https://www.amazon.in/dp/B07R451W27?tag=${AFFILIATE_TAG}` },
     { id: 10, category: 'rupees200', title: 'Classmate Octane Gel Pens', desc: 'Smooth flowing dark ink gel pens pack for regular writing.', oldPrice: '₹200', price: '₹99', discount: '50% OFF', link: `https://www.amazon.in/dp/B0821213P7?tag=${AFFILIATE_TAG}` },
@@ -67,17 +66,12 @@ const freshDeals = [
 ];
 
 function updateDeals() {
-    console.log("Injecting core matrix catalog...");
     const indexPath = path.join(__dirname, 'index.html');
     let htmlContent = fs.readFileSync(indexPath, 'utf8');
-
     const dataString = JSON.stringify(freshDeals, null, 1);
     const regex = /(const dailyDeals = )\[[\s\S]*?\];/;
-    
     htmlContent = htmlContent.replace(regex, `$1${dataString};`);
     fs.writeFileSync(indexPath, htmlContent, 'utf8');
-    
-    console.log("Success: Clean HTML layout write operations completed.");
+    console.log("Success.");
 }
-
 updateDeals();
