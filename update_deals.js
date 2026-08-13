@@ -3,26 +3,30 @@ const path = require('path');
 
 const AFFILIATE_TAG = 'antify-21';
 
-// Curry verified standard ASIN structures with proper trailing slashes
+// Indestructible matrix catalog using smart targeted keyword search queries
 const freshDeals = [
     // === ₹200 DEALS CATEGORY ===
-    { id: 1, category: 'rupees200', title: 'Portronics Fast Charging Cable', desc: 'Heavy-duty durable data sync charging cord for smartphones.', oldPrice: '₹399', price: '₹99', discount: '75% OFF', link: `https://www.amazon.in/dp/B0821213P7/?tag=${AFFILIATE_TAG}` },
-    { id: 2, category: 'rupees200', title: 'Gizga Essentials Microfiber Cloths', desc: 'Ultra-soft absorbent cleaning cloths for laptops, tabs and screens.', oldPrice: '₹499', price: '₹149', discount: '70% OFF', link: `https://www.amazon.in/dp/B015W9BL60/?tag=${AFFILIATE_TAG}` },
-    { id: 3, category: 'rupees200', title: 'ELV Desktop Mobile Stand', desc: 'Premium multi-angle adjustable desktop holder for all smartphones.', oldPrice: '₹499', price: '₹149', discount: '70% OFF', link: `https://www.amazon.in/dp/B07R451W27/?tag=${AFFILIATE_TAG}` },
-    { id: 4, category: 'rupees200', title: 'Syska 9W LED Base Bulb', desc: 'Energy efficient bright home lighting solution bulb base.', oldPrice: '₹250', price: '₹99', discount: '60% OFF', link: `https://www.amazon.in/dp/B00V49B8M8/?tag=${AFFILIATE_TAG}` },
+    { id: 1, category: 'rupees200', title: 'Stainless Steel Mobile Stand', desc: 'Multi-angle adjustable desktop holder compatible with all smartphones.', oldPrice: '₹499', price: '₹149', discount: '70% OFF', link: `https://www.amazon.in/s?k=mobile+stand+under+200&tag=${AFFILIATE_TAG}` },
+    { id: 2, category: 'rupees200', title: 'Braided Type-C Fast Charging Cable', desc: '1.5-meter heavy-duty nylon braided data sync cord.', oldPrice: '₹399', price: '₹99', discount: '75% OFF', link: `https://www.amazon.in/s?k=type+c+cable+under+200&tag=${AFFILIATE_TAG}` },
+    { id: 3, category: 'rupees200', title: 'Microfiber Cleaning Cloths Pack', desc: 'Ultra-soft absorbent towels perfect for cars, screens, and lenses.', oldPrice: '₹599', price: '₹189', discount: '68% OFF', link: `https://www.amazon.in/s?k=microfiber+cloth+under+200&tag=${AFFILIATE_TAG}` },
+    { id: 4, category: 'rupees200', title: 'Pocket LED Keychain Flashlight', desc: 'Super bright compact tactical torch with carabiner clip.', oldPrice: '₹349', price: '₹129', discount: '63% OFF', link: `https://www.amazon.in/s?k=keychain+flashlight+under+200&tag=${AFFILIATE_TAG}` },
 
     // === ELECTRONICS CATEGORY ===
-    { id: 5, category: 'electronics', title: 'boAt Bassheads 100 Wired Earphones', desc: 'In-ear wired earphones with super extra bass and integrated mic.', oldPrice: '₹999', price: '₹399', discount: '60% OFF', link: `https://www.amazon.in/dp/B071Z97T21/?tag=${AFFILIATE_TAG}` },
-    { id: 6, category: 'electronics', title: 'SanDisk Cruzer Blade 32GB USB', desc: 'Ultra-compact portable flash drive for effortless data backups.', oldPrice: '₹650', price: '₹299', discount: '54% OFF', link: `https://www.amazon.in/dp/B007SPF16O/?tag=${AFFILIATE_TAG}` },
-    { id: 7, category: 'electronics', title: 'Logitech M170 Wireless Mouse', desc: 'Reliable 2.4GHz wireless tracking precise compact mouse setup.', oldPrice: '₹895', price: '₹599', discount: '33% OFF', link: `https://www.amazon.in/dp/B01B73D5Q4/?tag=${AFFILIATE_TAG}` },
+    { id: 5, category: 'electronics', title: 'TWS Wireless Earbuds Pro', desc: 'Bluetooth 5.3 deep bass pods with extensive playback layout.', oldPrice: '₹2,999', price: '₹799', discount: '73% OFF', link: `https://www.amazon.in/s?k=wireless+earbuds+boat+noise&tag=${AFFILIATE_TAG}` },
+    { id: 6, category: 'electronics', title: '10000mAh Compact Power Bank', desc: 'Dual port fast charging portable power station modules.', oldPrice: '₹1,999', price: '₹649', discount: '67% OFF', link: `https://www.amazon.in/s?k=10000mah+power+bank&tag=${AFFILIATE_TAG}` },
+    { id: 7, category: 'electronics', title: 'Ergonomic Wireless Mouse', desc: 'Precision tracking computer mouse with DPI adjustments.', oldPrice: '₹999', price: '₹299', discount: '70% OFF', link: `https://www.amazon.in/s?k=wireless+mouse+logitech+dell&tag=${AFFILIATE_TAG}` },
 
     // === CLOTHING CATEGORY ===
-    { id: 8, category: 'clothing', title: 'Alan Jones Cotton Sweatshirt', desc: 'Premium comfortable breathable long sleeve casual winter wear.', oldPrice: '₹1,999', price: '₹599', discount: '70% OFF', link: `https://www.amazon.in/dp/B07KWSFKM4/?tag=${AFFILIATE_TAG}` },
-    { id: 9, category: 'clothing', title: 'Symbol Men Cotton Polo Tee', desc: 'Classic polo collar solid casual regular fit t-shirt clothing.', oldPrice: '₹1,199', price: '₹399', discount: '66% OFF', link: `https://www.amazon.in/dp/B08682F8MS/?tag=${AFFILIATE_TAG}` },
+    { id: 8, category: 'clothing', title: 'Classic Cotton Crewneck Tee', desc: 'Premium breathable combed cotton basic short sleeve shirt.', oldPrice: '₹799', price: '₹279', discount: '65% OFF', link: `https://www.amazon.in/s?k=men+cotton+tshirt+regular+fit&tag=${AFFILIATE_TAG}` },
+    { id: 9, category: 'clothing', title: 'Athletic Workout Shorts', desc: 'Quick-dry training shorts featuring functional zip pockets.', oldPrice: '₹999', price: '₹349', discount: '65% OFF', link: `https://www.amazon.in/s?k=men+sports+shorts+with+pockets&tag=${AFFILIATE_TAG}` },
 
     // === KITCHEN CATEGORY ===
-    { id: 10, category: 'kitchen', title: 'Pigeon Polypropylene Mini Chopper', desc: 'Handy manual dynamic pull-string fruit and vegetable chopper.', oldPrice: '₹495', price: '₹249', discount: '50% OFF', link: `https://www.amazon.in/dp/B01LWYDEQ7/?tag=${AFFILIATE_TAG}` },
-    { id: 11, category: 'kitchen', title: 'Cello H2O Stainless Steel Bottle', desc: 'Durable premium mirror finish cold storage single wall flask.', oldPrice: '₹999', price: '₹399', discount: '60% OFF', link: `https://www.amazon.in/dp/B01M3Y89B2/?tag=${AFFILIATE_TAG}` }
+    { id: 10, category: 'kitchen', title: 'Electronic Kitchen Scale', desc: 'High precision digital food weight scale with tare layout.', oldPrice: '₹999', price: '₹329', discount: '67% OFF', link: `https://www.amazon.in/s?k=digital+kitchen+weight+scale&tag=${AFFILIATE_TAG}` },
+    { id: 11, category: 'kitchen', title: 'Handheld Milk Frother', desc: 'Battery operated electric foam whisk maker for coffee formatting.', oldPrice: '₹499', price: '₹199', discount: '60% OFF', link: `https://www.amazon.in/s?k=electric+milk+frother+handheld&tag=${AFFILIATE_TAG}` },
+
+    // === UTENSILS CATEGORY ===
+    { id: 12, category: 'utensils', title: 'Non-Stick Induction Frying Pan', desc: 'Heavy gauge aluminium skillet base with double layer coating.', oldPrice: '₹1,499', price: '₹499', discount: '67% OFF', link: `https://www.amazon.in/s?k=non+stick+frying+pan+induction&tag=${AFFILIATE_TAG}` },
+    { id: 13, category: 'utensils', title: 'Silicone Spatula Cook Set', desc: 'Heat-resistant seamless non-scratch flexible kitchen scrapers.', oldPrice: '₹799', price: '₹299', discount: '63% OFF', link: `https://www.amazon.in/s?k=silicone+spatula+set+for+kitchen&tag=${AFFILIATE_TAG}` }
 ];
 
 function updateDeals() {
