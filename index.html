@@ -14,485 +14,149 @@
 </head>
 <body class="bg-[#f8fafc] text-gray-800 min-h-screen flex flex-col justify-between">
 
-    <!-- Header / Navigation -->
-    <header class="border-b border-gray-200 bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center space-x-2">
-                <span class="text-2xl font-bold tracking-tight bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
-                    AntifyStore
-                </span>
+    <!-- CLIENT STOREFRONT VIEW -->
+    <div id="store-view" class="flex flex-col justify-between min-h-screen">
+        <!-- Header / Navigation -->
+        <header class="border-b border-gray-200 bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+            <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="flex items-center space-x-2">
+                    <span class="text-2xl font-bold tracking-tight bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
+                        AntifyStore
+                    </span>
+                </div>
+                <p class="text-xs font-mono text-gray-400 tracking-wider bg-gray-100 px-2 py-1 rounded">LIVE REFRESH AUTOMATION ACTIVE</p>
             </div>
-            <p class="text-xs font-mono text-gray-400 tracking-wider bg-gray-100 px-2 py-1 rounded">LIVE REFRESH AUTOMATION ACTIVE</p>
-        </div>
-    </header>
+        </header>
 
-    <!-- Navigation Filters (Preserving your exact category logic) -->
-    <div class="bg-white py-4 border-b border-gray-200 backdrop-blur-sm">
-        <div class="max-w-6xl mx-auto px-4 flex flex-wrap gap-2 justify-center">
-            <button onclick="filterCategory('all')" id="btn-all" class="category-btn active px-4 py-2 text-xs font-semibold rounded-full border border-gray-200 bg-gray-50 text-gray-600 hover:text-cyan-600 hover:border-cyan-300 transition shadow-sm">All Finds</button>
-            <button onclick="filterCategory('rupees200')" id="btn-rupees200" class="category-btn px-4 py-2 text-xs font-semibold rounded-full border border-gray-200 bg-gray-50 text-gray-600 hover:text-cyan-600 hover:border-cyan-300 transition shadow-sm">Under ₹200 Finds</button>
-            <button onclick="filterCategory('electronics')" id="btn-electronics" class="category-btn px-4 py-2 text-xs font-semibold rounded-full border border-gray-200 bg-gray-50 text-gray-600 hover:text-cyan-600 hover:border-cyan-300 transition shadow-sm">Electronics</button>
-            <button onclick="filterCategory('clothing')" id="btn-clothing" class="category-btn px-4 py-2 text-xs font-semibold rounded-full border border-gray-200 bg-gray-50 text-gray-600 hover:text-cyan-600 hover:border-cyan-300 transition shadow-sm">Clothing</button>
-            <button onclick="filterCategory('kitchen')" id="btn-kitchen" class="category-btn px-4 py-2 text-xs font-semibold rounded-full border border-gray-200 bg-gray-50 text-gray-600 hover:text-cyan-600 hover:border-cyan-300 transition shadow-sm">Kitchen</button>
-            <button onclick="filterCategory('utensils')" id="btn-utensils" class="category-btn px-4 py-2 text-xs font-semibold rounded-full border border-gray-200 bg-gray-50 text-gray-600 hover:text-cyan-600 hover:border-cyan-300 transition shadow-sm">Utensils</button>
+        <!-- Navigation Filters (Preserving your exact category logic) -->
+        <div class="bg-white py-4 border-b border-gray-200 backdrop-blur-sm">
+            <div class="max-w-6xl mx-auto px-4 flex flex-wrap gap-2 justify-center">
+                <button onclick="filterCategory('all')" id="btn-all" class="category-btn active px-4 py-2 text-xs font-semibold rounded-full border border-gray-200 bg-gray-50 text-gray-600 hover:text-cyan-600 hover:border-cyan-300 transition shadow-sm">All Finds</button>
+                <button onclick="filterCategory('rupees200')" id="btn-rupees200" class="category-btn px-4 py-2 text-xs font-semibold rounded-full border border-gray-200 bg-gray-50 text-gray-600 hover:text-cyan-600 hover:border-cyan-300 transition shadow-sm">Under ₹200 Finds</button>
+                <button onclick="filterCategory('electronics')" id="btn-electronics" class="category-btn px-4 py-2 text-xs font-semibold rounded-full border border-gray-200 bg-gray-50 text-gray-600 hover:text-cyan-600 hover:border-cyan-300 transition shadow-sm">Electronics</button>
+                <button onclick="filterCategory('clothing')" id="btn-clothing" class="category-btn px-4 py-2 text-xs font-semibold rounded-full border border-gray-200 bg-gray-50 text-gray-600 hover:text-cyan-600 hover:border-cyan-300 transition shadow-sm">Clothing</button>
+                <button onclick="filterCategory('kitchen')" id="btn-kitchen" class="category-btn px-4 py-2 text-xs font-semibold rounded-full border border-gray-200 bg-gray-50 text-gray-600 hover:text-cyan-600 hover:border-cyan-300 transition shadow-sm">Kitchen</button>
+                <button onclick="filterCategory('utensils')" id="btn-utensils" class="category-btn px-4 py-2 text-xs font-semibold rounded-full border border-gray-200 bg-gray-50 text-gray-600 hover:text-cyan-600 hover:border-cyan-300 transition shadow-sm">Utensils</button>
+            </div>
+        </div>
+
+        <!-- Main Value Section -->
+        <main class="max-w-6xl mx-auto px-4 py-12 flex-grow w-full">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-cyan-600 px-3 py-1 bg-cyan-50 rounded-full border border-cyan-200/60">
+                    Curated Blueprints & Daily Gear
+                </span>
+                <h1 class="text-4xl font-extrabold tracking-tight mt-4 mb-4 text-gray-900">
+                    Stop Browsing Junk. Streamline Your Gear.
+                </h1>
+                <p class="text-sm text-gray-500 leading-relaxed">
+                    Our active system index filters, checks, and displays verified budget-friendly components and daily productivity essentials.
+                </p>
+            </div>
+
+            <!-- 🛡️ Crucial Reviewer Shield -->
+            <section class="bg-white border border-gray-200 rounded-2xl p-6 mb-12 shadow-sm">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                    <div class="space-y-2 max-w-3xl">
+                        <div class="flex items-center space-x-2 text-cyan-600">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            <h2 class="text-md font-bold tracking-tight text-gray-900">Why Trust AntifyStore?</h2>
+                        </div>
+                        <p class="text-xs text-gray-500 leading-relaxed">
+                            We operate as an independent digital product curation guide. Instead of populating catalog layouts via unvetted marketplace search listings, items are handpicked strictly for consumer economic configuration metrics, utility, and stellar long-term value.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dynamic Content Placement Grid -->
+            <section class="mb-12">
+                <div id="deals-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Rendered dynamically by your background workflow execution -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-gray-200 bg-white text-gray-400 text-[11px] py-10 shadow-inner">
+            <div class="max-w-4xl mx-auto px-4 space-y-4 text-center">
+                <div class="p-4 bg-slate-50 rounded-lg border border-gray-200 leading-relaxed text-gray-500 text-left md:text-center">
+                    <span class="font-semibold text-gray-700 block mb-1">Amazon Associates Program Disclosure:</span>
+                    As an Amazon Associate, I earn from qualifying purchases. When you click on links to various merchants on this site and make a purchase, this can result in this site earning a commission at absolutely zero extra economic cost to you.
+                </div>
+                <p>&copy; 2026 AntifyStore. All parameters and prices are subject to live real-time verification natively on Amazon.in. | <a href="#privacy" target="_blank" class="underline text-cyan-600 font-medium hover:text-cyan-700">Privacy Policy</a></p>
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- 📜 INDEPENDENT COMPLIANT PRIVACY POLICY VIEW -->
+    <div id="privacy-view" class="hidden min-h-screen bg-slate-50 py-16 px-4">
+        <div class="max-w-3xl mx-auto bg-white border border-gray-200 rounded-2xl p-8 md:p-12 shadow-sm">
+            <div class="border-b border-gray-100 pb-6 mb-8">
+                <span class="text-xs font-mono uppercase tracking-widest text-cyan-600 font-bold">Legal Document Framework</span>
+                <h1 class="text-3xl font-extrabold text-gray-900 mt-1">Privacy Policy</h1>
+                <p class="text-xs text-gray-400 mt-2">Welcome to Antify (antifystore.vercel.app). Your privacy is critically important to us. This Privacy Policy outlines the types of information we collect, how it is handled, and our practices regarding external compliance.</p>
+            </div>
+
+            <div class="space-y-8 text-sm text-gray-600 leading-relaxed">
+                <div>
+                    <h3 class="font-bold text-gray-900 text-base mb-2">1. Information We Collect</h3>
+                    <p class="mb-2">Antify is a static, curated portfolio and web application showcase.</p>
+                    <p class="mb-2"><strong class="text-gray-800">Personal Data:</strong> We do not require user registration, accounts, or profiles. We do not collect, store, or process personal identifying information such as names, email addresses, phone numbers, or billing details.</p>
+                    <p><strong class="text-gray-800">Log Data:</strong> Like most basic web architectures, standard technical metrics (such as generalized device type or regional traffic metadata) may be processed transiently by our hosting provider (Vercel) solely to serve the website securely and monitor uptime.</p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-gray-900 text-base mb-2">2. Cookies and Third-Party Tracking</h3>
+                    <p>We do not deploy custom internal tracking cookies or marketing pixels. However, because this site functions as an affiliate platform, third-party partners (such as Amazon) may utilize cookies, web beacons, or tracking identifiers to monitor traffic origin and validate qualifying purchases when you interact with external outgoing links. You can choose to disable or selectively turn off cookies in your browser settings at any time without affecting your ability to browse this website.</p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-gray-900 text-base mb-2">3. Outgoing Links to External Websites</h3>
+                    <p>Our service contains curated links to external third-party marketplaces (such as Amazon.in). If you click on a third-party link, you will be directed to that site. Please note that these external platforms operate under their own independent terms of service and privacy structures. We highly recommend reviewing the Privacy Policy of any external destination you visit.</p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-gray-900 text-base mb-2">4. Updates to This Policy</h3>
+                    <p>We reserve the right to update this policy as our developer ecosystem expands. Any updates will be reflected directly on this page with an updated timestamp.</p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-gray-900 text-base mb-2">5. Contact Us</h3>
+                    <p>For any inquiries regarding this developer framework or project, please contact us directly through the channels provided in our main portal footer.</p>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-100 mt-10 pt-6 text-center">
+                <p class="text-xs text-gray-400 font-mono">Document Clearance Active &bull; Approved Framework 2026</p>
+            </div>
         </div>
     </div>
 
-    <!-- Main Value Section -->
-    <main class="max-w-6xl mx-auto px-4 py-12 flex-grow w-full">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-            <span class="text-xs font-semibold uppercase tracking-widest text-cyan-600 px-3 py-1 bg-cyan-50 rounded-full border border-cyan-200/60">
-                Curated Blueprints & Daily Gear
-            </span>
-            <h1 class="text-4xl font-extrabold tracking-tight mt-4 mb-4 text-gray-900">
-                Stop Browsing Junk. Streamline Your Gear.
-            </h1>
-            <p class="text-sm text-gray-500 leading-relaxed">
-                Our active system index filters, checks, and displays verified budget-friendly components and daily productivity essentials.
-            </p>
-        </div>
-
-        <!-- 🛡️ Crucial Reviewer Shield: Why Trust Us (High Trust Layout) -->
-        <section class="bg-white border border-gray-200 rounded-2xl p-6 mb-12 shadow-sm">
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-                <div class="space-y-2 max-w-3xl">
-                    <div class="flex items-center space-x-2 text-cyan-600">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                        <h2 class="text-md font-bold tracking-tight text-gray-900">Why Trust AntifyStore?</h2>
-                    </div>
-                    <p class="text-xs text-gray-500 leading-relaxed">
-                        We operate as an independent digital product curation guide. Instead of populating catalog layouts via unvetted marketplace search listings, items are handpicked strictly for consumer economic configuration metrics, utility, and stellar long-term value.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Dynamic Content Placement Grid -->
-        <section class="mb-12">
-            <div id="deals-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <!-- Rendered dynamically by your background workflow execution -->
-            </div>
-        </section>
-    </main>
-
-    <!-- Essential Privacy Policies Mandatory for Amazon Approval -->
-    <footer class="border-t border-gray-200 bg-white text-gray-400 text-[11px] py-10 shadow-inner">
-        <div class="max-w-4xl mx-auto px-4 space-y-4 text-center">
-            
-            <!-- Absolute Core Mandatory Affiliate Disclosure Statement -->
-            <div class="p-4 bg-slate-50 rounded-lg border border-gray-200 leading-relaxed text-gray-500 text-left md:text-center">
-                <span class="font-semibold text-gray-700 block mb-1">Amazon Associates Program Disclosure:</span>
-                As an Amazon Associate, I earn from qualifying purchases. When you click on links to various merchants on this site and make a purchase, this can result in this site earning a commission at absolutely zero extra economic cost to you.
-            </div>
-            
-            <p>&copy; 2026 AntifyStore. All parameters and prices are subject to live real-time verification natively on Amazon.in. | <a href="#" class="underline hover:text-gray-500">Privacy Policy</a></p>
-        </div>
-    </footer>
 
     <script>
         // Target dynamic array placement (Your script writes straight to this exact block!)
-        const dailyDeals = [
- {
-  "id": 1,
-  "category": "rupees200",
-  "title": "Portronics Fast Charging Cable",
-  "desc": "Heavy-duty durable data sync charging cord for smartphones.",
-  "label": "Top Rated Find",
-  "link": "https://www.amazon.in/s?k=Portronics+Fast+Charging+Cable&tag=antify-21"
- },
- {
-  "id": 2,
-  "category": "rupees200",
-  "title": "Gizga Essentials Microfiber Cloths",
-  "desc": "Ultra-soft absorbent cleaning cloths for laptops, tabs and screens.",
-  "label": "Best Seller",
-  "link": "https://www.amazon.in/s?k=Gizga+Essentials+Microfiber+Cloths&tag=antify-21"
- },
- {
-  "id": 3,
-  "category": "rupees200",
-  "title": "ELV Desktop Mobile Stand",
-  "desc": "Premium multi-angle adjustable desktop holder for all smartphones.",
-  "label": "Highly Rated",
-  "link": "https://www.amazon.in/s?k=ELV+Desktop+Mobile+Stand&tag=antify-21"
- },
- {
-  "id": 4,
-  "category": "rupees200",
-  "title": "Syska 9W LED Base Bulb",
-  "desc": "Energy efficient bright home lighting solution bulb base.",
-  "label": "Daily Essential",
-  "link": "https://www.amazon.in/s?k=Syska+9W+LED+Base+Bulb&tag=antify-21"
- },
- {
-  "id": 5,
-  "category": "rupees200",
-  "title": "Cello H2O Plastic Bottle Set",
-  "desc": "BPA-free food grade durable water bottles for daily home use.",
-  "label": "Kitchen Special",
-  "link": "https://www.amazon.in/s?k=Cello+H2O+Plastic+Bottle+Set&tag=antify-21"
- },
- {
-  "id": 6,
-  "category": "rupees200",
-  "title": "Pidilite Fevikwik Instant Gel",
-  "desc": "Super strong instant adhesive glue for multiple repairs.",
-  "label": "Quick Fix Pick",
-  "link": "https://www.amazon.in/s?k=Pidilite+Fevikwik+Instant+Gel&tag=antify-21"
- },
- {
-  "id": 7,
-  "category": "rupees200",
-  "title": "Scotch-Brite Kitchen Sponge",
-  "desc": "Heavy duty scrub pads for effective kitchen utensil cleaning.",
-  "label": "Top Cleaning Choice",
-  "link": "https://www.amazon.in/s?k=Scotch-Brite+Kitchen+Sponge&tag=antify-21"
- },
- {
-  "id": 8,
-  "category": "rupees200",
-  "title": "Dettol Liquid Handwash Refill",
-  "desc": "Effective germ protection handwash fluid skin gentle formula.",
-  "label": "Value Pack",
-  "link": "https://www.amazon.in/s?k=Dettol+Liquid+Handwash+Refill&tag=antify-21"
- },
- {
-  "id": 9,
-  "category": "rupees200",
-  "title": "Wipro 9W Smart LED Bulb",
-  "desc": "Energy saver lighting accent base for small room setups.",
-  "label": "Smart Home Pick",
-  "link": "https://www.amazon.in/s?k=Wipro+9W+Smart+LED+Bulb&tag=antify-21"
- },
- {
-  "id": 10,
-  "category": "rupees200",
-  "title": "Classmate Octane Gel Pens",
-  "desc": "Smooth flowing dark ink gel pens pack for regular writing.",
-  "label": "Stationery Pick",
-  "link": "https://www.amazon.in/s?k=Classmate+Octane+Gel+Pens&tag=antify-21"
- },
- {
-  "id": 11,
-  "category": "electronics",
-  "title": "boAt Bassheads 100 Wired Earphones",
-  "desc": "In-ear wired earphones with super extra bass and integrated mic.",
-  "label": "Mega Value",
-  "link": "https://www.amazon.in/s?k=boAt+Bassheads+100+Wired+Earphones&tag=antify-21"
- },
- {
-  "id": 12,
-  "category": "electronics",
-  "title": "SanDisk Cruzer Blade 32GB USB",
-  "desc": "Ultra-compact portable flash drive for effortless data backups.",
-  "label": "Top Seller",
-  "link": "https://www.amazon.in/s?k=SanDisk+Cruzer+Blade+32GB+USB&tag=antify-21"
- },
- {
-  "id": 13,
-  "category": "electronics",
-  "title": "Logitech M170 Wireless Mouse",
-  "desc": "Reliable 2.4GHz wireless tracking precise compact mouse setup.",
-  "label": "Desk Essential",
-  "link": "https://www.amazon.in/s?k=Logitech+M170+Wireless+Mouse&tag=antify-21"
- },
- {
-  "id": 14,
-  "category": "electronics",
-  "title": "TP-Link TL-WA850RE Wifi Extender",
-  "desc": "Universal wall-plug wireless network signal booster station.",
-  "label": "Network Boost",
-  "link": "https://www.amazon.in/s?k=TPLink+TLWA850RE+Wifi+Extender&tag=antify-21"
- },
- {
-  "id": 15,
-  "category": "electronics",
-  "title": "JBL C100SI Wired Headphones",
-  "desc": "Premium signature sound quality in-ear dynamic clear bass set.",
-  "label": "Audio Choice",
-  "link": "https://www.amazon.in/s?k=JBL+C100SI+Wired+Headphones&tag=antify-21"
- },
- {
-  "id": 16,
-  "category": "electronics",
-  "title": "Mi 10W Fast Charger Adapter",
-  "desc": "Safe multi-protection reliable power delivery wall block travel charger.",
-  "label": "Must Have Accessory",
-  "link": "https://www.amazon.in/s?k=Mi+10W+Fast+Charger+Adapter&tag=antify-21"
- },
- {
-  "id": 17,
-  "category": "electronics",
-  "title": "boAt Wave Call Smartwatch",
-  "desc": "Advanced tracking sleek display layout bluetooth calling wrist wearable.",
-  "label": "Trending Wearable",
-  "link": "https://www.amazon.in/s?k=boAt+Wave+Call+Smartwatch&tag=antify-21"
- },
- {
-  "id": 18,
-  "category": "electronics",
-  "title": "Zebronics Bluetooth Soundbar",
-  "desc": "Compact dual speaker module setup for theatre room audio expansion.",
-  "label": "Home Audio Deal",
-  "link": "https://www.amazon.in/s?k=Zebronics+Bluetooth+Soundbar&tag=antify-21"
- },
- {
-  "id": 19,
-  "category": "electronics",
-  "title": "Ambrane 10000mAh Power Bank",
-  "desc": "Dual output fast lithium polymer compact battery storage station.",
-  "label": "Travel Essential",
-  "link": "https://www.amazon.in/s?k=Ambrane+10000mAh+Power+Bank&tag=antify-21"
- },
- {
-  "id": 20,
-  "category": "electronics",
-  "title": "Syska 4-Way Extension Board",
-  "desc": "Surge protector multi-plug grid with long heavy wire insulation.",
-  "label": "Power Setup",
-  "link": "https://www.amazon.in/s?k=Syska+4Way+Extension+Board&tag=antify-21"
- },
- {
-  "id": 21,
-  "category": "clothing",
-  "title": "Alan Jones Cotton Sweatshirt",
-  "desc": "Premium comfortable breathable long sleeve casual winter wear.",
-  "label": "Premium Comfort",
-  "link": "https://www.amazon.in/s?k=Alan+Jones+Cotton+Sweatshirt&tag=antify-21"
- },
- {
-  "id": 22,
-  "category": "clothing",
-  "title": "Symbol Men Cotton Polo Tee",
-  "desc": "Classic polo collar solid casual regular fit t-shirt clothing.",
-  "label": "Casual Style",
-  "link": "https://www.amazon.in/s?k=Symbol+Men+Cotton+Polo+Tee&tag=antify-21"
- },
- {
-  "id": 23,
-  "category": "clothing",
-  "title": "Lymio Casual Men Trackpants",
-  "desc": "Regular fit athletic training joggers track pants with pockets.",
-  "label": "Active Wear",
-  "link": "https://www.amazon.in/s?k=Lymio+Casual+Men+Trackpants&tag=antify-21"
- },
- {
-  "id": 24,
-  "category": "clothing",
-  "title": "Van Heusen Men Cotton Briefs",
-  "desc": "Super combed daily elasticated waist inner clothing essential.",
-  "label": "Daily Comfort",
-  "link": "https://www.amazon.in/s?k=Van+Heusen+Men+Cotton+Briefs&tag=antify-21"
- },
- {
-  "id": 25,
-  "category": "clothing",
-  "title": "Max Men Solid Regular T-Shirt",
-  "desc": "Soft daily crew neck premium cotton blend comfort fit tee.",
-  "label": "Essential Tee",
-  "link": "https://www.amazon.in/s?k=Max+Men+Solid+Regular+TShirt&tag=antify-21"
- },
- {
-  "id": 26,
-  "category": "clothing",
-  "title": "Puma Unisex Ankle Socks Pack",
-  "desc": "Cushioned performance knit sport training foot accessory bundle.",
-  "label": "Sport Pack",
-  "link": "https://www.amazon.in/s?k=Puma+Unisex+Ankle+Socks+Pack&tag=antify-21"
- },
- {
-  "id": 27,
-  "category": "clothing",
-  "title": "Bata Men Formal Leather Shoes",
-  "desc": "Durable uniform dress footwear with sleek comfort base design.",
-  "label": "Classic Formal",
-  "link": "https://www.amazon.in/s?k=Bata+Men+Formal+Leather+Shoes&tag=antify-21"
- },
- {
-  "id": 28,
-  "category": "clothing",
-  "title": "Levis Men Straight Fit Jeans",
-  "desc": "Classic heavy denim vintage washed long-lasting styling pants.",
-  "label": "Timeless Denim",
-  "link": "https://www.amazon.in/s?k=Levis+Men+Straight+Fit+Jeans&tag=antify-21"
- },
- {
-  "id": 29,
-  "category": "clothing",
-  "title": "Adidas Sports Track Jacket",
-  "desc": "Full zip athletic performance windcheater running active wear.",
-  "label": "Athletic Choice",
-  "link": "https://www.amazon.in/s?k=Adidas+Sports+Track+Jacket&tag=antify-21"
- },
- {
-  "id": 30,
-  "category": "clothing",
-  "title": "Wildhorn Leather Men Wallet",
-  "desc": "Premium finish multi slot bifold pocket credit card companion.",
-  "label": "Genuine Leather",
-  "link": "https://www.amazon.in/s?k=Wildhorn+Leather+Men+Wallet&tag=antify-21"
- },
- {
-  "id": 31,
-  "category": "kitchen",
-  "title": "Pigeon Polypropylene Mini Chopper",
-  "desc": "Handy manual dynamic pull-string fruit and vegetable chopper.",
-  "label": "Kitchen Helper",
-  "link": "https://www.amazon.in/s?k=Pigeon+Polypropylene+Mini+Chopper&tag=antify-21"
- },
- {
-  "id": 32,
-  "category": "kitchen",
-  "title": "Cello H2O Stainless Steel Bottle",
-  "desc": "Durable premium mirror finish cold storage single wall flask.",
-  "label": "Sleek Storage",
-  "link": "https://www.amazon.in/s?k=Cello+H2O+Stainless+Steel+Bottle&tag=antify-21"
- },
- {
-  "id": 33,
-  "category": "kitchen",
-  "title": "Kuber Industries Storage Containers",
-  "desc": "Airtight food-grade modular kitchen space organizer boxes.",
-  "label": "Pantry Organizer",
-  "link": "https://www.amazon.in/s?k=Kuber+Industries+Storage+Containers&tag=antify-21"
- },
- {
-  "id": 34,
-  "category": "kitchen",
-  "title": "Milton Thermosteel Hot Flask",
-  "desc": "Vacuum insulated long duration tea coffee temperature maintainer.",
-  "label": "Insulated Premium",
-  "link": "https://www.amazon.in/s?k=Milton+Thermosteel+Hot+Flask&tag=antify-21"
- },
- {
-  "id": 35,
-  "category": "kitchen",
-  "title": "Prestige Electric Kettle 1.5L",
-  "desc": "Automatic cut off rapid boil stainless steel liquid heater.",
-  "label": "Fast Boil Pick",
-  "link": "https://www.amazon.in/s?k=Prestige+Electric+Kettle+1.5L&tag=antify-21"
- },
- {
-  "id": 36,
-  "category": "kitchen",
-  "title": "Butterfly Premium Gas Stove",
-  "desc": "Toughened glass top dual burner high efficiency brass setup.",
-  "label": "Cooktop Special",
-  "link": "https://www.amazon.in/s?k=Butterfly+Premium+Gas+Stove&tag=antify-21"
- },
- {
-  "id": 37,
-  "category": "kitchen",
-  "title": "Borosil Glass Lunch Box Set",
-  "desc": "Microwave safe leakproof office meal container set bags.",
-  "label": "Office Essential",
-  "link": "https://www.amazon.in/s?k=Borosil+Glass+Lunch+Box+Set&tag=antify-21"
- },
- {
-  "id": 38,
-  "category": "kitchen",
-  "title": "Kent 16068 Hand Milk Blender",
-  "desc": "Powerful low noise electrical quick mix beverage whisk layout.",
-  "label": "Quick Blender",
-  "link": "https://www.amazon.in/s?k=Kent+16068+Hand+Milk+Blender&tag=antify-21"
- },
- {
-  "id": 39,
-  "category": "kitchen",
-  "title": "AmazonBasics Silicone Baking Mats",
-  "desc": "Reusable non stick sheet tray liner tool configuration panels.",
-  "label": "Baking Gear",
-  "link": "https://www.amazon.in/s?k=AmazonBasics+Silicone+Baking+Mats&tag=antify-21"
- },
- {
-  "id": 40,
-  "category": "kitchen",
-  "title": "Hawkins Contura Pressure Cooker",
-  "desc": "Hard anodized reliable performance faster uniform heating pot.",
-  "label": "Chef Choice",
-  "link": "https://www.amazon.in/s?k=Hawkins+Contura+Pressure+Cooker&tag=antify-21"
- },
- {
-  "id": 41,
-  "category": "utensils",
-  "title": "Prestige Aluminium Non-Stick Tawa",
-  "desc": "Omni non-stick induction base premium frying durable griddle.",
-  "label": "Daily Cooking",
-  "link": "https://www.amazon.in/s?k=Prestige+Aluminium+NonStick+Tawa&tag=antify-21"
- },
- {
-  "id": 42,
-  "category": "utensils",
-  "title": "Signoraware Serving Ladles Set",
-  "desc": "Heat-resistant premium non-scratch modular cooking spoon kit.",
-  "label": "Scratch Free",
-  "link": "https://www.amazon.in/s?k=Signoraware+Serving+Ladles+Set&tag=antify-21"
- },
- {
-  "id": 43,
-  "category": "utensils",
-  "title": "Hawkins Stainless Steel Saucepan",
-  "desc": "Induction compatible heavy gauge tea milk cooking vessel pan.",
-  "label": "Heavy Bottom Pan",
-  "link": "https://www.amazon.in/s?k=Hawkins+Stainless+Steel+Saucepan&tag=antify-21"
- },
- {
-  "id": 44,
-  "category": "utensils",
-  "title": "Pigeon Non-Stick Kitchen Set",
-  "desc": "Three piece premium cooktop kadhai frying pan flat tawa bundle.",
-  "label": "Combo Pack",
-  "link": "https://www.amazon.in/s?k=Pigeon+NonStick+Kitchen+Set&tag=antify-21"
- },
- {
-  "id": 45,
-  "category": "utensils",
-  "title": "Meyer Stainless Steel Kadhai",
-  "desc": "Thick triple layer base anti scratch premium stir fry deep wok.",
-  "label": "Premium Build",
-  "link": "https://www.amazon.in/s?k=Meyer+Stainless+Steel+Kadhai&tag=antify-21"
- },
- {
-  "id": 46,
-  "category": "utensils",
-  "title": "Wonderchef Granite Cookware Set",
-  "desc": "Die cast heavy construction non stick multi purpose designer pots.",
-  "label": "Designer Collection",
-  "link": "https://www.amazon.in/s?k=Wonderchef+Granite+Cookware+Set&tag=antify-21"
- },
- {
-  "id": 47,
-  "category": "utensils",
-  "title": "Vinod Stainless Steel Idli Maker",
-  "desc": "Multi tier steam container module for traditional south cooking.",
-  "label": "Breakfast Special",
-  "link": "https://www.amazon.in/s?k=Vinod+Stainless+Steel+Idli+Maker&tag=antify-21"
- },
- {
-  "id": 48,
-  "category": "utensils",
-  "title": "Choity Potato Wave Masher",
-  "desc": "Comfortable grip grid mesh pure smooth manual vegetable masher.",
-  "label": "Easy Mash Tool",
-  "link": "https://www.amazon.in/s?k=Choity+Potato+Wave+Masher&tag=antify-21"
- },
- {
-  "id": 49,
-  "category": "utensils",
-  "title": "Cartini Stainless Kitchen Scissors",
-  "desc": "Razor sharp multi utility household scaling bone snipper tool.",
-  "label": "Heavy Duty Shears",
-  "link": "https://www.amazon.in/s?k=Cartini+Stainless+Kitchen+Scissors&tag=antify-21"
- },
- {
-  "id": 50,
-  "category": "utensils",
-  "title": "Dynamic Stainless Steel Whisks",
-  "desc": "Heavy looping wire manual balloon cream egg blending tools.",
-  "label": "Baking Essential",
-  "link": "https://www.amazon.in/s?k=Dynamic+Stainless+Steel+Whisks&tag=antify-21"
- }
-];
+        const dailyDeals = [];
+
+        // Single-file elegant routing logic
+        function handleRouting() {
+            if (window.location.hash === '#privacy') {
+                document.getElementById('store-view').classList.add('hidden');
+                document.getElementById('privacy-view').classList.remove('hidden');
+                document.title = "Privacy Policy - AntifyStore";
+            } else {
+                document.getElementById('store-view').classList.remove('hidden');
+                document.getElementById('privacy-view').classList.add('hidden');
+                document.title = "AntifyStore | Premium Curated Tech Essentials";
+            }
+        }
+
+        window.addEventListener('hashchange', handleRouting);
+        window.addEventListener('DOMContentLoaded', () => {
+            handleRouting();
+            renderDeals(dailyDeals);
+        });
 
         function renderDeals(items) {
             const container = document.getElementById('deals-container');
@@ -534,10 +198,6 @@
                 renderDeals(filtered);
             }
         }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            renderDeals(dailyDeals);
-        });
     </script>
 </body>
 </html>
